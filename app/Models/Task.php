@@ -9,7 +9,13 @@ class Task extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['building_id', 'assigned_user_id', 'title', 'description', 'status'];
+    protected $fillable = [
+        'building_id',
+        'assigned_user_id',
+        'title',
+        'description',
+        'status'
+    ];
 
     /**
      * Get the building that owns the task.

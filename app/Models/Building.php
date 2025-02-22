@@ -9,7 +9,10 @@ class Building extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'address'];
+    protected $fillable = [
+        'name',
+        'address'
+    ];
 
     /**
      * Get the tasks for the building.
