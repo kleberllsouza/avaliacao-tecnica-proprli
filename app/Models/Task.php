@@ -36,4 +36,25 @@ class Task extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    /**
+     * Scope to set filters in query.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  array  $filters
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeFilter($query, array $filters)
+    {
+        if (isset($filters['status'])) {
+            $query->where('status', $filters['status']);
+        }
+        if (isset($filters['assigned_user_id'])) {
+            $query->where('assigned_user_id', $filters['assigned_user_id']);
+        }
+        if (isset($filters['date_from']) && isset($filters['date_to'])) {
+            $query->whereBetween('created_at', [$filters['date_from'], $filters['date_to']]);
+        }
+        return $query;
+    }
 }
