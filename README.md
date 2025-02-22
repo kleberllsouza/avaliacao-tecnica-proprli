@@ -1,5 +1,5 @@
 
-# Setup Docker Para Projetos Laravel (8, 9, 10 ou 11)
+# Projeto Laravel Proprli
 
 ## Passo a passo
 
@@ -18,7 +18,7 @@ cp .env.example .env
 Atualize as variáveis de ambiente do arquivo .env
 
 ```dosini
-APP_NAME="Projeto Laravel Proprili"
+APP_NAME="Projeto Laravel Proprli"
 APP_URL=http://localhost:8989
 
 DB_CONNECTION=mysql
