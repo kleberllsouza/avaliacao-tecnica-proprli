@@ -1,21 +1,21 @@
 
-# Projeto Laravel Proprli
+# Laravel Proprli Project
 
-## Passo a passo
+## Step by Step
 
-Clone Repositório
+Clone Repository
 
 ```sh
 git clone https://github.com/kleberllsouza/avaliacao-tecnica-proprli.git
 ```
 
-Crie o Arquivo .env
+Create the .env File
 
 ```sh
 cp .env.example .env
 ```
 
-Atualize as variáveis de ambiente do arquivo .env
+Update the environment variables in the .env file
 
 ```dosini
 APP_NAME="Projeto Laravel Proprli"
@@ -37,29 +37,29 @@ REDIS_PASSWORD=null
 REDIS_PORT=6379
 ```
 
-Suba os containers do projeto
+Start the project’s containers
 
 ```sh
 docker-compose up -d
 ```
 
-Acessar o container
+Access the container
 
 ```sh
 docker-compose exec app bash
 ```
 
-Instalar as dependências do projeto
+Install the project’s dependencies
 
 ```sh
 composer install
 ```
 
-Gerar a key do projeto Laravel
+Generate the Laravel project key
 
 ```sh
 php artisan key:generate
 ```
 
-Acessar o projeto
-[http://localhost:8989](http://localhost:8989)
+Access the project
+Open your browser and go to [http://localhost:8989](http://localhost:8989)
