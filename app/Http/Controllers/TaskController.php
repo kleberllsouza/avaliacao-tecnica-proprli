@@ -2,22 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Task;
-use App\Models\Building;
-use Illuminate\Http\Request;
 use App\Http\Requests\StoreTaskRequest;
+use App\Models\Building;
+use App\Models\Task;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
+/**
+ * Class TaskController
+ *
+ * Handles task-related operations.
+ *
+ * @package App\Http\Controllers
+ */
 class TaskController extends Controller
 {
     /**
-     * List all tasks with comments.
+     * List all tasks for a given building with their comments.
      *
-     * @param  \App\Models\Building  $building
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse
+     * @param Building $building
+     * @param Request $request
+     * @return JsonResponse
      */
-
-    public function index(Building $building, Request $request)
+    public function index(Building $building, Request $request): JsonResponse
     {
         $tasks = $building->tasks()
             ->with('comments')
@@ -30,15 +37,14 @@ class TaskController extends Controller
     /**
      * Create a new task.
      *
-     * @param  \App\Http\Requests\StoreTaskRequest  $request
-     * @return \Illuminate\Http\JsonResponse
+     * @param StoreTaskRequest $request
+     * @return JsonResponse
      */
-    public function store(StoreTaskRequest $request)
+    public function store(StoreTaskRequest $request): JsonResponse
     {
         $data = $request->validated();
-
         $task = Task::create($data);
-        
+
         return response()->json($task, 201);
     }
 }

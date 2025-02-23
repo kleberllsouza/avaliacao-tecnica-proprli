@@ -3,12 +3,26 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * Class Task
+ *
+ * Represents a task associated with a building.
+ *
+ * @package App\Models
+ */
 class Task extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
     protected $fillable = [
         'building_id',
         'assigned_user_id',
@@ -20,28 +34,28 @@ class Task extends Model
     /**
      * Get the building that owns the task.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
-    public function building()
+    public function building(): BelongsTo
     {
         return $this->belongsTo(Building::class);
     }
 
     /**
-     * Get all comments for the task.
+     * Get the comments associated with the task.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
-    public function comments()
+    public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);
     }
 
     /**
-     * Scope to set filters in query.
+     * Scope a query to filter tasks based on given criteria.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @param  array  $filters
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param array<string, mixed> $filters
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeFilter($query, array $filters)
